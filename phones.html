@@ -16,6 +16,17 @@
             <input id="input-field" type="text">
             <button id="search-btn" class="btn btn-primary">Search</button>
         </div>
+        <!-- error massage -->
+        <div id="error" class="d-none">
+            <p class="text-danger">No phone found! Please search again.</p>
+        </div>
+        
+        <!-- spinner -->
+        <div id="spinner" class="d-flex justify-content-center mt-5 d-none">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
 
         <div id="phones-container" class="row row-cols-1 row-cols-md-3 g-4">
             

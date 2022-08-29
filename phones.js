@@ -3,12 +3,18 @@ const loadData = async (search_phone)=>{
     const data = await res.json();
     displayPhones(data.data);
 }
-loadData();
+// loadData();
 
 
 const displayPhones = phones =>{
     const phonesContainer = document.getElementById('phones-container');
     phonesContainer.innerHTML = '';
+    const errorMsg = document.getElementById('error');
+    if(phones.length === 0){
+        errorMsg.classList.remove('d-none');
+    }else{
+        errorMsg.classList.add('d-none');
+    }
     phones.forEach(phone =>{
         console.log(phone)
         const{phone_name,image} = phone;
@@ -22,13 +28,24 @@ const displayPhones = phones =>{
         </div>
       </div>`
       phonesContainer.appendChild(phoneDiv);
-
     })
+    spinner(false)
 }
 
 document.getElementById('search-btn').addEventListener('click',()=>{
+    
+    spinner(true)
     const inputField = document.getElementById('input-field');
     const inputValue = inputField.value;
     loadData(inputValue);
     inputField.value = '';
 })
+
+function spinner(isLoading){
+    const spinner = document.getElementById('spinner');
+    if(isLoading){
+        spinner.classList.remove('d-none');
+    }else{
+        spinner.classList.add('d-none')
+    }
+}
